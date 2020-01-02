@@ -1,0 +1,46 @@
+
+public class Solution {
+	public static  LinkedListNode<Integer> swap_nodes(LinkedListNode<Integer> head,int i,int j){
+		
+        LinkedListNode<Integer> temp=head;
+        LinkedListNode<Integer> prev=null;
+        LinkedListNode<Integer> prev1=temp;
+        LinkedListNode<Integer> current1=prev1.next;
+        LinkedListNode<Integer> prev2=current1.next;
+        LinkedListNode<Integer> current2=prev2.next;
+        int pos=0;
+        while(temp!=null){
+            
+            if(pos==i){
+                prev1=prev;
+                current1=temp;
+                
+            }
+            if(pos==j){
+                prev2=prev;
+                current2=temp;
+            }
+            pos++;
+            prev=temp;
+            temp=temp.next; 
+        }
+        
+        if(prev1==null){
+            head=current2;
+        }
+        else{
+            prev1.next=current2;
+        }
+        if(prev2==null){
+            head=current1;
+        }
+        if(prev2!=null){
+            prev2.next=current1;
+        }
+        temp=current2.next;
+        current2.next=current1.next;
+        current1.next=temp;
+        return head;
+        
+	}
+}
